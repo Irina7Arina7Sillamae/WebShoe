@@ -21,7 +21,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author iriin
  */
-@WebServlet(name = "MyServlet", urlPatterns = {"/MyServlet"})
+@WebServlet(name = "MyServlet", urlPatterns = {
+    "/myServlet",
+    "/addModel", 
+    "/createModel", 
+    "/addBuyer"
+})
 public class MyServlet extends HttpServlet {
     @EJB
     private ModelFacade modelFacade;
@@ -40,20 +45,38 @@ public class MyServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        String path = request.getServletPath();
+        switch (path) {
+            case "/myServlet":
+                String info = "Привет от My Servlet!";
+                request.setAttribute("infoText", info);
+                request.getRequestDispatcher("/page1.jsp").forward(request, response);
+                break;
+                
+            case "/addModel":
+                info = "Добавление новой модели обуви";
+                request.setAttribute("infoText", info);
+                request.getRequestDispatcher("/addModel.jsp").forward(request, response);
+                break;
+            case "/addBuyer":
+                info = "Добавление нового  покупателя";
+                request.setAttribute("infoText", info);
+                request.getRequestDispatcher("/addBuyer.jsp").forward(request, response);
+                break;
+                
+        }
+        
        // Model model = new Model();
        // model.setManufacturer("Nike");
        // model.setColor("black");
        
-        Model model = modelFacade.find(4L);
-        
-        String info = "Привет от My Servlet!";
-        request.setAttribute("infoText", info);
-        request.setAttribute("model", model);
-        
-        Buyer buyer = buyerFacade.find(4L);
-        request.setAttribute("buyer", buyer);
-        
-        request.getRequestDispatcher("/page1.jsp").forward(request, response);        
+        //Model model = modelFacade.find(4L);
+        //String info = "Привет от My Servlet!";
+        //request.setAttribute("infoText", info);
+        //request.setAttribute("model", model);
+        //Buyer buyer = buyerFacade.find(4L);
+        //request.setAttribute("buyer", buyer);
+        //request.getRequestDispatcher("/page1.jsp").forward(request, response);        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="index.html"><h3>index</h3></a><br><br><br>
+        <a href="index.html"><h3>index</h3></a><br>
         <h1>Hello FineWorld!!!</h1>
         <h1>-------------------------</h1>
         <h3>${infoText}</h3>
