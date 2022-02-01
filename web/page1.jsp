@@ -14,7 +14,7 @@
     <body>
         <a href="index.html"><h3>index</h3></a><br>
         <h1>Hello FineWorld!!!</h1>
-        <h1>-------------------------</h1>
+        <h4>-------------------------</h4>
         <h3>${infoText}</h3>
         <p>Производитель: ${model.manufacturer} <br>Цвет        : ${model.color}</p><br>
         <p>Покупатель: ${buyer.name}  <br>Телефон: ${buyer.phone}  <br>Деньги: ${buyer.money} euro</p>

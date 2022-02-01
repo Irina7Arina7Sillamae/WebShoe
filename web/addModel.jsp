@@ -15,20 +15,13 @@
     <body>
         <h1>Новая модель</h1>
         <h3>${infoText}</h3>
-        <form action="create model" method="POST">
+        <form action="createModel" method="POST">
             Производитель : <input type="text" size = "40" name="manufacturer"><br>
-            Цвет : <select name="color">
-                <option value="1">black</option>
-                <option value="2">red</option>
-                <option value="3">white</option>
-                <option value="4">broun</option>
-                <option value="5">blue</option>
-                <option value="6">bezz</option>
-            </select><br>
+            Цвет : <input type="text" size = "40" name="color"><br>
             Размер : <input type="text" size = "40" name="size"><br>
             Цена : <input type="text" size = "40" name="price"><br>
             Количество : <input type="text" size = "40" name="quantity"><br>
-                               <input type="submit" name="Добавить"><br>
+            <input type="submit" name="Добавить"><br>
         </form>
     </body>
 </html>

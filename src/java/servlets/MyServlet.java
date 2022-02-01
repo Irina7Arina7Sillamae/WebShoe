@@ -10,6 +10,9 @@ import entity.Model;
 import facade.BuyerFacade;
 import facade.ModelFacade;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +28,10 @@ import javax.servlet.http.HttpServletResponse;
     "/myServlet",
     "/addModel", 
     "/createModel", 
-    "/addBuyer"
+    "/addBuyer",
+    "/createBuyer", 
+    "/listModels",
+    "/listBuyers"
 })
 public class MyServlet extends HttpServlet {
     @EJB
@@ -44,6 +50,7 @@ public class MyServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         
         String path = request.getServletPath();
         switch (path) {
@@ -54,14 +61,62 @@ public class MyServlet extends HttpServlet {
                 break;
                 
             case "/addModel":
-                info = "Добавление новой модели обуви";
+                info = "Добавление модели обуви";
                 request.setAttribute("infoText", info);
                 request.getRequestDispatcher("/addModel.jsp").forward(request, response);
                 break;
+            case "/createModel":
+                String manufacturer = request.getParameter("manufacturer");
+                String color = request.getParameter("color");
+                String size = request.getParameter("size");
+                String price = request.getParameter("price");
+                String quantity = request.getParameter("quantity");
+                
+                Model model = new Model();
+                model.setManufacturer(manufacturer);
+                model.setColor(color);
+                model.setSize(Integer.parseInt(size));
+                model.setPrice(Integer.parseInt(price));
+                model.setQuantity(Integer.parseInt(quantity));
+                model.setCount(model.getQuantity());
+                
+                modelFacade.create(model);
+                info = "Новая модель обуви добавлена";
+                request.setAttribute("infoText", info);
+                request.getRequestDispatcher("/addModel_1.jsp").forward(request, response);
+                break;
             case "/addBuyer":
-                info = "Добавление нового  покупателя";
+                info = "Добавление обуви";
                 request.setAttribute("infoText", info);
                 request.getRequestDispatcher("/addBuyer.jsp").forward(request, response);
+                break;
+            case "/createBuyer":
+                String name = request.getParameter("name");
+                String phone = request.getParameter("phone");
+                String money = request.getParameter("money");
+                
+                Buyer buyer = new Buyer();
+                buyer.setName(name);
+                buyer.setPhone(phone);
+                buyer.setMoney(Integer.parseInt(money));
+                buyerFacade.create(buyer);
+                info = "Новый покупатель добавлен";
+                request.setAttribute("infoText", info);
+                request.getRequestDispatcher("/addBuyer_1.jsp").forward(request, response);
+                break;
+            case "/listModels":
+                info = "Список моделей обуви";
+                request.setAttribute("infoText", info);
+                List<Model> listModels = modelFacade.findAll();
+                request.setAttribute("listModels", listModels);
+                request.getRequestDispatcher("/listModels1.jsp").forward(request, response);
+                break;
+            case "/listBuyers":
+                info = "Список покупателей";
+                request.setAttribute("infoText", info);
+                List<Buyer> listBuyers = buyerFacade.findAll();
+                request.setAttribute("listBuyers", listBuyers);
+                request.getRequestDispatcher("/listBuyer1.jsp").forward(request, response);
                 break;
                 
         }
@@ -116,6 +171,7 @@ public class MyServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }// </editor-fold>//Обязательная часть!!!
 
+    
 }

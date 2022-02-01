@@ -14,7 +14,7 @@
     <body>
         <h1>Новый покупатель</h1>
         <h3>${infoText}</h3>
-         <form action="new buyer" method="POST">
+         <form action="createBuyer" method="POST">
             Имя : <input type="text" size = "40" name="name"><br>
             Телефон : <input type="text" size = "40" name="phone"><br>
             Кол-во денег : <input type="text" size = "40" name="money"><br>
