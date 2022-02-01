@@ -86,7 +86,7 @@ public class MyServlet extends HttpServlet {
                 request.getRequestDispatcher("/addModel_1.jsp").forward(request, response);
                 break;
             case "/addBuyer":
-                info = "Добавление обуви";
+                info = "Добавление покупателя";
                 request.setAttribute("infoText", info);
                 request.getRequestDispatcher("/addBuyer.jsp").forward(request, response);
                 break;
@@ -109,14 +109,14 @@ public class MyServlet extends HttpServlet {
                 request.setAttribute("infoText", info);
                 List<Model> listModels = modelFacade.findAll();
                 request.setAttribute("listModels", listModels);
-                request.getRequestDispatcher("/listModels1.jsp").forward(request, response);
+                request.getRequestDispatcher("/listModels.jsp").forward(request, response);
                 break;
             case "/listBuyers":
                 info = "Список покупателей";
                 request.setAttribute("infoText", info);
                 List<Buyer> listBuyers = buyerFacade.findAll();
                 request.setAttribute("listBuyers", listBuyers);
-                request.getRequestDispatcher("/listBuyer1.jsp").forward(request, response);
+                request.getRequestDispatcher("/listBuyers.jsp").forward(request, response);
                 break;
                 
         }
