@@ -1,8 +1,3 @@
-<%-- 
-    Document   : addBuyer
-    Created on : 28.01.2022, 15:19:33
-    Author     : iriin
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

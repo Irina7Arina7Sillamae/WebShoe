@@ -1,8 +1,3 @@
-<%-- 
-    Document   : listBuyer
-    Created on : 01.02.2022, 12:49:19
-    Author     : iriin
---%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

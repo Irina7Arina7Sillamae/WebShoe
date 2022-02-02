@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlets;
 
 import entity.Buyer;
@@ -20,24 +16,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author iriin
- */
 @WebServlet(name = "MyServlet", urlPatterns = {
     "/myServlet",
-    "/addModel", 
-    "/createModel", 
+    "/addModel",
+    "/createModel",
     "/addBuyer",
-    "/createBuyer", 
+    "/createBuyer",
     "/listModels",
     "/listBuyers"
 })
 public class MyServlet extends HttpServlet {
+
     @EJB
     private ModelFacade modelFacade;
     @EJB
     private BuyerFacade buyerFacade;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -51,7 +45,7 @@ public class MyServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
+
         String path = request.getServletPath();
         switch (path) {
             case "/myServlet":
@@ -59,7 +53,7 @@ public class MyServlet extends HttpServlet {
                 request.setAttribute("infoText", info);
                 request.getRequestDispatcher("/page1.jsp").forward(request, response);
                 break;
-                
+
             case "/addModel":
                 info = "Добавление модели обуви";
                 request.setAttribute("infoText", info);
@@ -71,7 +65,7 @@ public class MyServlet extends HttpServlet {
                 String size = request.getParameter("size");
                 String price = request.getParameter("price");
                 String quantity = request.getParameter("quantity");
-                
+
                 Model model = new Model();
                 model.setManufacturer(manufacturer);
                 model.setColor(color);
@@ -79,7 +73,7 @@ public class MyServlet extends HttpServlet {
                 model.setPrice(Integer.parseInt(price));
                 model.setQuantity(Integer.parseInt(quantity));
                 model.setCount(model.getQuantity());
-                
+
                 modelFacade.create(model);
                 info = "Новая модель обуви добавлена";
                 request.setAttribute("infoText", info);
@@ -94,7 +88,7 @@ public class MyServlet extends HttpServlet {
                 String name = request.getParameter("name");
                 String phone = request.getParameter("phone");
                 String money = request.getParameter("money");
-                
+
                 Buyer buyer = new Buyer();
                 buyer.setName(name);
                 buyer.setPhone(phone);
@@ -118,13 +112,12 @@ public class MyServlet extends HttpServlet {
                 request.setAttribute("listBuyers", listBuyers);
                 request.getRequestDispatcher("/listBuyers.jsp").forward(request, response);
                 break;
-                
+
         }
-        
-       // Model model = new Model();
-       // model.setManufacturer("Nike");
-       // model.setColor("black");
-       
+
+        // Model model = new Model();
+        // model.setManufacturer("Nike");
+        // model.setColor("black");
         //Model model = modelFacade.find(4L);
         //String info = "Привет от My Servlet!";
         //request.setAttribute("infoText", info);
@@ -173,5 +166,4 @@ public class MyServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>//Обязательная часть!!!
 
-    
 }
