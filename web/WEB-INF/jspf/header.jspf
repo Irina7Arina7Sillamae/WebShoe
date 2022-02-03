@@ -56,4 +56,5 @@ and open the template in the editor.
                   </div>
                 </nav>
             <!--       -------END NAVBAR--------    --> 
-        <div class="container-fluid ">
+        <div class="container-fluid ">  
+            <p class="w-100 my-3 d-flex justify-content-center text-muted">${info}</p>
